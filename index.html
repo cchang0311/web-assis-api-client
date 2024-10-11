@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom GPT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+        header {
+            background-color: #4236f1;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        .text-section {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 1rem;
+            border-right: 1px solid #ccc;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        .chat-history {
+            flex: 1;
+            border: 1px solid #ccc;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            overflow-y: auto;
+        }
+        .input-area {
+            display: flex;
+        }
+        .input-area input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px 0 0 4px;
+        }
+        .input-area button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #4CAF50;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="text-section">
+        <h2 style="position: sticky; top: 0; background-color: #f4f4f4; z-index: 1;">Prompt History</h2>
+    </div>
+    <div class="main-content">
+        <header>
+            <h1 style="text-align: center;">스터디카페 (평택 비전동) - 소개 및 안내</h1>
+            <p style="text-align: center;">평택 비전동 리게인 스터디 카페 소개 및 사용 문의 안내</p>
+        </header>
+        <div id="chat-history-window" class="chat-history">
+            <!-- Conversation history will be displayed here -->
+        </div>
+        <div class="input-area">
+            <input type="text" placeholder="Type your message...">
+            <button>Send</button>
+        </div>
+        <footer>
+            <p>&copy; 2024 팀투고. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="main.js"></script>
+
+</html>
