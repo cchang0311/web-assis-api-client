@@ -15,10 +15,11 @@ async function getAccessToken(uniqueID) {
                 'Content-Type': 'application/json',
             },
         });
-
-        return await response.json();
+        
+        const text = await response.text();
+        return json.parse(text);
     } catch (error) {
-        console.error('Error sending system ID:', error);
+        console.error('Error sending getAccessToken:', error);
     }
 }
 
@@ -31,10 +32,10 @@ async function createAssistantSession() {
                 'Content-Type': 'application/json',
             },
         });
-
-        return await response.json();
+        const text = await response.text();
+        return json.parse(text);
     } catch (error) {
-        console.error('Error sending system ID:', error);
+        console.error('Error sending createAssistantSession:', error);
     }
 }
 
@@ -51,7 +52,7 @@ getAccessToken(uniqueID).then(response => {
         console.log('access token: ', token)
         accessToken = token;
     } else {
-        console.error('No response received');
+        console.error('No response received from getAccessToken');
     }
 
 }).catch(error => {
@@ -66,11 +67,11 @@ createAssistantSession().then(response => {
         console.log('message:', message);
         console.log('assistant ID: ', assistantSessionID);
     } else {
-        console.error('No response received');
+        console.error('No response received from createAssistantSession');
     }
 
 }).catch(error => {
-    console.error('Error getting access token:', error);
+    console.error('Error getting assistant ID:', error);
 });
 
 
