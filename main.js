@@ -17,7 +17,7 @@ async function getAccessToken(uniqueID) {
         });
         
         const text = await response.text();
-        return json.parse(text);
+        return JSON.parse(text);
     } catch (error) {
         console.error('Error sending getAccessToken:', error);
     }
@@ -33,7 +33,7 @@ async function createAssistantSession() {
             },
         });
         const text = await response.text();
-        return json.parse(text);
+        return JSON.parse(text);
     } catch (error) {
         console.error('Error sending createAssistantSession:', error);
     }
