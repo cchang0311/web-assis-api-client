@@ -77,7 +77,7 @@ async function sendRequestToChatGpt(conversationHistory) {
 const uniqueID = Date.now();
 //console.log(uniqueID);
 
-
+/*
 getAccessToken(uniqueID).then(response => {
     if (response){
         const {message, access_token: token} = response;
@@ -91,6 +91,7 @@ getAccessToken(uniqueID).then(response => {
 }).catch(error => {
    console.error('Error getting access token:', error);
 });
+*/
 
 async function sendSystemMessage(initialMessages) {
     await createThreadSession(initialMessages).then(response => {
@@ -98,9 +99,9 @@ async function sendSystemMessage(initialMessages) {
             const {message, thread_ID: data, assistant_message: assistant_response} = response;
             threadSessionID_g = data;
             conversationHistory_g.push({role: 'assistant', content: assistant_response});
-            consoleLog('message:', message);
-            consoleLog('Thread ID: ', threadSessionID_g);
-            consoleLog('assistant response: ', assistant_response);
+            //consoleLog('message:', message);
+            //consoleLog('Thread ID: ', threadSessionID_g);
+            //consoleLog('assistant response: ', assistant_response);
         } else {
             console.error('No response received from createInitialThreadSession');
         }
@@ -117,7 +118,7 @@ async function askChatGpt (question) {
             const {thread_ID: data, assistant_message: assistant_response} = response;
             threadSessionID_g = data;
             conversationHistory_g.push({role: 'assistant', content: assistant_response});
-            consoleLog('Thread ID: ', threadSessionID_g);
+            //consoleLog('Thread ID: ', threadSessionID_g);
             //consoleLog('conversation history: ', conversationHistory_g);
         } else {
         console.error('No response received from createInitialThreadSession');
