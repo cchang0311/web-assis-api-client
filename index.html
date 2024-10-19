@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom GPT</title>
+    <title>Web-based Custom GPT</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,7 +16,7 @@
         header {
             background-color: #4236f1;
             color: white;
-            padding: 1rem;
+            padding: 0rem;
             text-align: center;
         }
         .text-section {
@@ -36,9 +36,56 @@
             flex: 1;
             border: 1px solid #ccc;
             padding: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             overflow-y: auto;
         }
+        .attach-symbol {
+            position: relative;
+            display: inline-block;
+            font-size: 24px;
+            cursor: pointer;
+            user-select: none;
+            margin-right: 8px;
+        }
+        #file-input {
+            display: none;
+        }
+
+        /* Tooltip text */
+        .tooltip-text {
+        visibility: visible;
+        width:90px; /* Adjusts width to fit the content */
+        height:25px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 10px;
+        padding:15px 15px 15px 15px; /* Adjust padding for smaller text */
+        position: absolute;
+        z-index: 1;
+        bottom: 125%; /* Position above the symbol */
+        left: 200%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 13px; /* Smaller font size */
+}
+        .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%; /* At the bottom of the tooltip */
+            left: 20%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+
+                /* Show tooltip on hover */
+                .attach-symbol:hover .tooltip-text {
+            opacity: 1;
+        }
+
         .input-area {
             display: flex;
         }
@@ -57,7 +104,7 @@
             cursor: pointer;
         }
         footer {
-            background-color: #f1f1f1;
+            background-color: #ffffff;
             text-align: center;
             padding: 1rem;
         }
@@ -68,26 +115,37 @@
         <h3 style="position: sticky; top: 0; background-color: #f4f4f4; z-index: 1;">User Messages</h3>
     </div>
     <div class="main-content">
+
         <header>
-            <h1 style="text-align: center;">영어 번역, 영어 에세이(작문) 첨삭 교정, 영어문제풀이 #영어</h1> 
-            <h2 style="text-align: center;">영어 <-> 한국어 자동 번역 / 영어 에세이 & 작문등을 교정 첨삭. / 영어</h2> 
-            <h2 style="text-align: center;">문제풀이 / #번역 #에세이 #작문 #첨삭 #영어 문제 풀이</h2> 
+            <h3 style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem;">영어 번역, 영어 에세이(작문) 첨삭 교정, 영어문제풀이 #영어</h3> 
+            <p style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem;">영어 <-> 한국어 자동 번역 / 영어 에세이 & 작문등을 교정 첨삭. / 영어</p> 
+            <p style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem;">문제풀이 / #번역 #에세이 #작문 #첨삭 #영어 문제 풀이</p> 
+            <!---
             <p style="text-align: center;">영어<->한국어 자동 번역</p>
             <p style="text-align: center;">영어 에세이 & 작문을 제출해 주시면 첨삭을 해드립니다영어 문제풀이 (영어 문제나 독해 문제 풀이 해결)</p>
             <p style="text-align: center;">영어 문제풀이 (영어 문제나 독해 문제 풀이 해결)</p>
+            -->
         </header>
         <div id="chat-history-window" class="chat-history">
             <!-- Conversation history will be displayed here -->
         </div>
         <div class="input-area">
+            <label for="file-input" class="attach-symbol" style="font-size: 1.3em;">
+                @
+                <span class="tooltip-text" style="text-align: center">
+                    .txt 나 .cvs 파일을 선택하세요
+                </span>
+            </label>
             <input type="text" placeholder="Type your message...">
             <button>Send</button>
+            <input type="file" id="file-input">
         </div>
-        <footer>
+        <footer style="height: 2%;">
             <p>&copy; 2024 팀투고. All rights reserved.</p>
         </footer>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
 <script src="main.js"></script>
 </html>
