@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     //upon starting up, the client sends /api/get-access-token to server 
     // client saves it and uses it whenever it sends an API request to server 
-    const apiUrl = 'http://localhost:5500/api/';
+    //const apiUrl = 'http://localhost:5500/api/';
+    const apiUrl = 'https://myimage-v3-370430147788.us-central1.run.app/api/';
 
     //register an event handler for use selecting a file to be sent to chatgpt
     document.getElementById('file-input').addEventListener('change', function() {
