@@ -110,6 +110,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 body: JSON.stringify({ messages:{role: 'user', content: userMessage}})
             });
 
+            if (!response.ok) {
+                throw new Error (`Server Error: ${response.status}, ${response.statusText}`);
+            }
+            
             const data = await response.json();
             const {user_token_count, assistant_token_count} = data;
             userTokenCount_g = user_token_count;
@@ -117,7 +121,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
             return data;
 
         } catch (error) {
-            console.error('Error in create-initial-thread-session:', error);
+            addMessageToChatHistory(
+                `***${error}***`
+            ) 
         }
     }
     /*
@@ -151,15 +157,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 }
             });
 
+            if (!response.ok) {
+                throw new Error (`Server Error: ${response.status}, ${response.statusText}`);
+            }
+
             const data = await response.json();
             const {thread_ID, user_token_count, assistant_token_count, assistant_message} = data;
             userTokenCount_g = user_token_count;
             assistantTokenCount_g = assistant_token_count;   
-            addMessageToChatHistory(`${assistant_message}(${userTokenCount_g+assistantTokenCount_g} tokens)`)
+            addMessageToChatHistory(`${assistant_message}(${userTokenCount_g+assistantTokenCount_g} tokens)`);
         } catch (error) {
-            console.error('Error in create-initial-thread-session:', error);
+            addMessageToChatHistory(
+                `***${error}***`
+            ) 
         }
     }
+
     
 
     //return the assistant message from chatgpt to the caller
